@@ -1,0 +1,30 @@
+{
+  "name": "touch-car",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vladyslav44/touchCar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vladyslav44/touchCar/issues"
+  },
+  "homepage": "https://github.com/Vladyslav44/touchCar#readme",
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.1.3",
+    "vite": "^5.4.3",
+    "vue": "^3.5.3"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.78.0"
+  }
+}
