@@ -1,0 +1,21 @@
+.contacts-navigation {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  display: flex;
+  gap: 8px;
+
+  .contacts-navigation_link {
+    padding: 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contacts-navigation_item {
+    width: 24px;
+    fill: #f0f0f0;
+  }
+}

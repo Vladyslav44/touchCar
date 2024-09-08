@@ -1,13 +1,16 @@
 <template>
-    <div>
-        <h1>Hello Vue 3 with Vite!</h1>
-    </div>
+    <Cabinet />
 </template>
 
 <script>
 import './main.scss';
 
+import Cabinet from "./components/Cabinet.vue";
+
 export default {
     name: 'App',
+    components: {
+        Cabinet
+    },
 };
 </script>
