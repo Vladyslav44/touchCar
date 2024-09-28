@@ -16,14 +16,6 @@
     width: 150px;
   }
 
-  .main-header__car {
-    position: absolute;
-    width: 50%;
-    bottom: -190px;
-    left: 0;
-    transform: scaleX(-1);
-  }
-
   .main-header__address {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
@@ -41,7 +33,7 @@
   }
 
   .main-header__title-sale {
-    color: red;
+    color: #d20000;
   }
 
   .main-header__description {
@@ -54,22 +46,21 @@
   }
 
   .main-header__button {
+    width: 250px;
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     font-style: normal;
     font-size: 18px;
     cursor: pointer;
     border: none;
-    color: white;
-    padding: 14px;
+    color: #ffffff;
+    padding: 12px;
     text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
-    border-radius: 10px;
-    background-image: linear-gradient(to right, #800000 0%, #B22222 51%, #800000 100%);
+    background-color: #7e7e7e;
+    z-index: 999;
 
     &:hover {
-      background-position: right center;
+      background-color: #707070;
     }
   }
 

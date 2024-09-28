@@ -2,6 +2,11 @@
     <div class="main-form">
         <div class="main-form__container">
             <img
+                :src="mainCar"
+                alt="mainCar"
+                class="main-form__car"
+            >
+            <img
                 :src="logo"
                 alt="Car Logo"
                 class="main-form__logo"
@@ -11,45 +16,44 @@
                     class="main-form__progress-bar"
                     :style="{ width: progressBarWidth + '%' }"
                 >
-
                 </div>
             </div>
             <span class="main-form__title">
                 {{ mainTitle }}
             </span>
-                <SegmentControl
-                    v-if="step === 1"
-                    v-model="carType"
-                    :options="typeOfCarItems"
-                    @update:modelValue="handleSetValue"
-                />
-                <SegmentControl
-                    v-if="step === 2"
-                    v-model="engineType"
-                    :options="engineTypeItems"
-                    class="main-form__engine-type"
-                    @update:modelValue="handleSetValue"
-                />
-                <SegmentControl
-                    v-if="step === 3"
-                    v-model="carBudget"
-                    :options="carBudgetItems"
-                    class="main-form__car-budget"
-                    @update:modelValue="handleSetValue"
-                />
-                <SegmentControl
-                    v-if="step === 4"
-                    v-model="presentType"
-                    :options="presentTypeItems"
-                    class="main-form__present-type"
-                    @update:modelValue="handleSetValue"
-                />
-                <div v-if="step === 5">
-                    <p>Тип машины: {{ carType }}</p>
-                    <p>Тип двигателя: {{ engineType }}</p>
-                    <p>Цена: {{ carBudget }}</p>
-                    <p>Подарок: {{ presentType }}</p>
-                </div>
+            <SegmentControl
+                v-if="step === 1"
+                v-model="carType"
+                :options="typeOfCarItems"
+                @update:modelValue="handleSetValue"
+            />
+            <SegmentControl
+                v-if="step === 2"
+                v-model="engineType"
+                :options="engineTypeItems"
+                class="main-form__engine-type"
+                @update:modelValue="handleSetValue"
+            />
+            <SegmentControl
+                v-if="step === 3"
+                v-model="carBudget"
+                :options="carBudgetItems"
+                class="main-form__car-budget"
+                @update:modelValue="handleSetValue"
+            />
+            <SegmentControl
+                v-if="step === 4"
+                v-model="presentType"
+                :options="presentTypeItems"
+                class="main-form__present-type"
+                @update:modelValue="handleSetValue"
+            />
+            <div v-if="step === 5">
+                <p>Тип машины: {{ carType }}</p>
+                <p>Тип двигателя: {{ engineType }}</p>
+                <p>Цена: {{ carBudget }}</p>
+                <p>Подарок: {{ presentType }}</p>
+            </div>
             <button
                 v-if="step > 1"
                 @click="handlePrevStep"
@@ -71,6 +75,7 @@ import {
 import './MainForm.scss';
 
 import logo from '../../assets/touch-car-logo.svg';
+import mainCar from '../../assets/main-car.png';
 
 import sedan from '../../assets/cars/sedan.png';
 import minivan from '../../assets/cars/minivan.png';
@@ -173,6 +178,7 @@ export default defineComponent({
 
         return {
             logo,
+            mainCar,
             progressBarWidth,
             mainTitle,
             step,

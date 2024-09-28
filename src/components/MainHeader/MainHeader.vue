@@ -26,11 +26,6 @@
         >
             ПІДІБРАТИ АВТО
         </button>
-<!--        <img-->
-<!--            :src="mainCar"-->
-<!--            alt="mainCar"-->
-<!--            class="main-header__car"-->
-<!--        >-->
     </div>
 </template>
 
@@ -39,7 +34,6 @@ import { defineComponent } from 'vue';
 
 import './MainHeader.scss';
 import logo from '../../assets/touch-car-logo.svg';
-import mainCar from '../../assets/main-car.png';
 import ContactsNavigation from "../ContactsNavigation/ContactsNavigation.vue";
 
 export default defineComponent({
@@ -60,7 +54,6 @@ export default defineComponent({
 
         return {
             logo,
-            mainCar,
             handleClick
         };
     }
