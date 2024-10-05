@@ -1,26 +1,28 @@
 <template>
     <div class="main-form">
         <div class="main-form__container">
-            <img
-                :src="mainCar"
-                alt="mainCar"
-                class="main-form__car"
-            >
-            <img
-                :src="logo"
-                alt="Car Logo"
-                class="main-form__logo"
-            >
-            <div class="main-form__progress-container">
-                <div
-                    class="main-form__progress-bar"
-                    :style="{ width: progressBarWidth + '%' }"
+            <div class="main-form__container-header">
+                <img
+                    :src="mainCar"
+                    alt="mainCar"
+                    class="main-form__car"
                 >
+                <img
+                    :src="logo"
+                    alt="Car Logo"
+                    class="main-form__logo"
+                >
+                <div class="main-form__progress-container">
+                    <div
+                        class="main-form__progress-bar"
+                        :style="{ width: progressBarWidth + '%' }"
+                    >
+                    </div>
                 </div>
-            </div>
-            <span class="main-form__title">
+                <span class="main-form__title">
                 {{ mainTitle }}
-            </span>
+                </span>
+            </div>
             <SegmentControl
                 v-if="step === 1"
                 v-model="carType"
@@ -49,10 +51,20 @@
                 @update:modelValue="handleSetValue"
             />
             <div v-if="step === 5">
-                <p>Тип машины: {{ carType }}</p>
-                <p>Тип двигателя: {{ engineType }}</p>
-                <p>Цена: {{ carBudget }}</p>
-                <p>Подарок: {{ presentType }}</p>
+                <SendForm
+                    @handleSendForm="handleSetValue"
+                />
+            </div>
+            <div
+                v-if="step === 6"
+                class="main-form__conclusion"
+            >
+                <span class="main-form__conclusion-title">
+                    ВАШУ ЗАЯВКУ ПРИЙНЯТО!
+                </span>
+                <span class="main-form__conclusion-subtitle">
+                    НАШ МЕНЕДЖЕР ЗВЯЖЕТЬСЯ З ВАМІ НАЙБЛИЖЧИМ ЧАСОМ
+                </span>
             </div>
             <button
                 v-if="step > 1"
@@ -91,10 +103,12 @@ import hybrid from '../../assets/engine/hybrid.png';
 import electric from '../../assets/engine/electric.png';
 
 import SegmentControl from "../SegmentControl/SegmentControl.vue";
+import SendForm from "../SendForm/SendForm.vue";
 
 export default defineComponent({
     name: 'MainForm',
     components: {
+        SendForm,
         SegmentControl
     },
     setup() {
@@ -105,7 +119,7 @@ export default defineComponent({
         const presentType = ref();
         const engineType = ref();
 
-        const progressBarWidth = computed(() => (step.value / 5) * 100);
+        const progressBarWidth = computed(() => (step.value / 6) * 100);
 
         const mainTitle = computed(() => {
             const TITLES_MAP = {
@@ -160,16 +174,16 @@ export default defineComponent({
         function handlePrevStep() {
             switch (step.value) {
                 case 5:
-                    presentType.value = null; // Очистка подарка
+                    presentType.value = null;
                     break;
                 case 4:
-                    carBudget.value = null; // Очистка бюджета
+                    carBudget.value = null;
                     break;
                 case 3:
-                    engineType.value = null; // Очистка типа двигателя
+                    engineType.value = null;
                     break;
                 case 2:
-                    carType.value = null; // Очистка типа машины
+                    carType.value = null;
                     break;
             }
             step.value--;

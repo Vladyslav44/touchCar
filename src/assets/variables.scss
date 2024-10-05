@@ -1,0 +1,40 @@
+@mixin font-extra-small() {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 15px;
+}
+
+@mixin font-small() {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+}
+
+@mixin font-middle() {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 25px;
+}
+
+@mixin font-middle-secondary() {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 30px;
+}
+
+@mixin font-large() {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 35px;
+}
+
+$main-z-index: 999;
+$color-white: #fff;
+$color-black: #000;
+$color-red: #d20000;
+$color-gray-button: #7e7e7e;

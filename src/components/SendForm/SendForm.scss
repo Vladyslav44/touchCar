@@ -1,0 +1,137 @@
+@import '../../assets/variables';
+
+.send-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+    .send-header__title,
+    .send-header__subtitle,
+    .send-header__description {
+        @include font-large;
+    }
+
+    .send-header__subtitle {
+      margin: 5px 0 20px;
+    }
+
+    .send-header__description {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+
+    .send-header__title,
+    .send-header__description-attention {
+        color: $color-red;
+    }
+
+    .send_header__btn {
+        @include font-small;
+        width: 250px;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        padding: 12px;
+        text-align: center;
+        z-index: 999;
+        margin-top: 30px;
+        background-color: $color-gray-button;
+        color: $color-white;
+
+        &:not(:disabled):hover {
+            background-color: #707070;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    .send-header__name-input-container,
+    .send-header__phone-input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        margin: 20px 0 8px;
+    }
+
+    .send-header__name-input {
+        min-height: 30px;
+        width: 400px;
+        padding: 6px 12px;
+        outline: none;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        font-size: 16px;
+
+        &:hover {
+            border: 1px solid rgba(197, 0, 0, 0.54);
+        }
+  }
+
+    .send-header__name-input-error,
+    .send-header__phone-input-error {
+        @include font-extra-small;
+        position: absolute;
+        color: $color-white;
+        bottom: -20px;
+    }
+
+    .send-header__phone-input{
+        width: 424px;
+        min-height: 42px;
+        border-color: transparent;
+        border-radius: 11px;
+        outline: none;
+
+        &:hover {
+            border: 1px solid rgba(197, 0, 0, 0.54);
+        }
+    }
+
+    .vti__dropdown-arrow {
+        display: none;
+    }
+
+    .vti__dropdown {
+        background-color: #a1a1a1 !important;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .vue-tel-input:focus-within {
+        box-shadow: unset;
+        border-color: transparent;
+    }
+
+    .vti__country-code {
+        @include font-extra-small;
+        color: $color-black !important;
+    }
+
+    .vti__input {
+        font-size: 16px;
+        border-radius: 0 10px 10px 0;
+
+        &::placeholder {
+            @include font-extra-small;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .send-header__title,
+        .send-header__subtitle {
+            @include font-middle-secondary;
+        }
+
+       .send-header__phone-input {
+          width: 303px;
+       }
+
+        .send-header__name-input {
+          width: 279px;
+        }
+    }
+}

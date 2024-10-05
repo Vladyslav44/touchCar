@@ -1,3 +1,5 @@
+@import '../../assets/variables';
+
 .main-form {
   display: flex;
   position: relative;
@@ -6,7 +8,7 @@
   //background-size: cover;
   //background-position: center;
   //background-repeat: no-repeat;
-  background-color: #ffffff;
+  background-color: $color-white;
   //background-image: url('../../assets/white-background.jpg');
   padding: 100px 150px;
 
@@ -15,7 +17,7 @@
   }
 
   .main-form__container {
-    display: flex;
+    //display: flex;
     position: relative;
     flex-direction: column;
     justify-content: flex-start;
@@ -23,19 +25,26 @@
     width: 100%;
     //min-height: 680px;
     max-width: 1400px;
-    background-color: rgba(80, 80, 80, 0.85);
+    background-color: rgba(80, 80, 80, 0.85); // will be dited
     padding: 20px 150px 70px;
 
-    ::before {
-      content: "";
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      bottom: 10px;
-      left: 10px;
-      border: 1px solid black;
-      pointer-events: none;
-    }
+    //::before {
+    //  content: "";
+    //  position: absolute;
+    //  top: 10px;
+    //  right: 10px;
+    //  bottom: 10px;
+    //  left: 10px;
+    //  border: 1px solid black;
+    //  pointer-events: none;
+    //}
+  }
+
+  .main-form__container-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .main-form__engine-type {
@@ -100,33 +109,24 @@
   }
 
   .main-form__back-btn {
+    @include font-small;
     position: absolute;
-    left: 8px;
-    bottom: 8px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 18px;
+    left: 40px;
+    top: 75px;
     cursor: pointer;
     border: none;
-    color: white;
-    padding: 14px;
-    text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
+    padding: 12px;
     border-radius: 10px;
-    background-image: linear-gradient(to right, #800000 0%, #B22222 51%, #800000 100%);
+    color: $color-white;
+    background-color: $color-gray-button;
 
     &:hover {
-      background-position: right center;
+      background-color: #707070;
     }
   }
 
   .main-form__title {
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 35px;
+    @include font-large;
     margin: 38px 0;
   }
 
@@ -136,17 +136,31 @@
   }
 
   .main-form__progress-container {
-    background-color: white;
+    background-color: $color-white;
     border-radius: 25px;
     height: 8px;
     width: 100%;
   }
 
   .main-form__progress-bar {
-    background-color: red;
+    background-color: $color-red;
     height: 100%;
     border-radius: 25px;
     transition: width 0.5s ease-out;
+  }
+
+  .main-form__conclusion {
+    @include font-large;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .main-form__conclusion-subtitle {
+      @include font-small;
+      margin-top: 20px;
+    }
   }
 
   @media (max-width: 800px) {
@@ -154,6 +168,11 @@
 
     .main-form__container {
       padding: 20px 20px 70px;
+    }
+
+    .main-form__back-btn {
+      top: 27px;
+      left: 17px;
     }
 
     .main-form__title {
