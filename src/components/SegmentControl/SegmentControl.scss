@@ -66,6 +66,14 @@
     //height: 160px; //edit
   }
 
+  @media (max-width: 800px) {
+    .segment-control__item {
+      &:hover {
+        border: none transparent;
+      }
+    }
+  }
+
   @media (max-width: 460px) {
     .segment-control__item {
       //max-width: 150px;
