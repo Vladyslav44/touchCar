@@ -1,4 +1,7 @@
+@import '../../assets/variables';
+
 .main-header {
+  min-height: 400px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -6,58 +9,51 @@
   align-items: center;
   text-align: center;
   padding: 25px 15px 135px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)),
-  url('https://images.unsplash.com/photo-1557159557-7a93eaadf72a?q=80&w=3271&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('../../assets/main-page-background.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center 63%;
   background-repeat: no-repeat;
 
   .main-header__logo {
     width: 150px;
+
+    @media (max-width: 500px) {
+      align-self: start;
+    }
   }
 
   .main-header__address {
-    font-family: "Roboto", sans-serif;
+    @include font-small;
     font-weight: 300;
-    font-style: normal;
-    font-size: 18px;
     margin-top: 12px;
   }
 
   .main-header__title {
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 45px;
+    @include font-super-large;
     margin: 28px 0;
   }
 
   .main-header__title-sale {
-    color: #d20000;
+    color: $color-red;
   }
 
   .main-header__description {
+    @include font-middle;
     width: 55%;
-    font-family: "Roboto", sans-serif;
     font-weight: 500;
-    font-style: normal;
-    font-size: 28px;
     margin-bottom: 24px;
   }
 
   .main-header__button {
+    @include font-small;
     width: 250px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    color: #ffffff;
-    padding: 12px;
     text-align: center;
-    background-color: #7e7e7e;
-    z-index: 999;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    color: $color-white;
+    background-color: $color-gray-button;
+    z-index: $main-z-index;
 
     &:hover {
       background-color: #707070;

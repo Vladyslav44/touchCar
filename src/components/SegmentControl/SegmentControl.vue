@@ -1,9 +1,11 @@
 <template>
-    <div class="segment-control">
+    <div
+        class="segment-control"
+        :class="themeClass"
+    >
         <label
-            v-for="item in localOptions"
+            v-for="item in options"
             :key="item.label"
-            :class="item.selectedClass"
             class="segment-control__item"
         >
             <input
@@ -34,7 +36,6 @@ import {
 } from 'vue';
 
 import './SegmentControl.scss';
-
 import { generateId } from '../../services/utils-services.js';
 
 export default defineComponent({
@@ -51,40 +52,30 @@ export default defineComponent({
         options: {
             type: Array,
             required: true
+        },
+        theme: {
+            type: String,
+            required: true
         }
     },
     emits: {
         'update:modelValue': null
     },
     setup(props, { emit }) {
-        const localOptions = computed(() => {
-            return props.options.map(item => {
-                const isChecked = item.value === props.modelValue;
-                return {
-                    ...item,
-                    isChecked,
-                    selectedClass: isChecked ? 'segment-control__item--selected' : null
-                };
-            });
-        });
+        const themeClass = computed(() => `segment-control--${props.theme}`);
 
         const localValue = computed({
             get() {
                 return props.modelValue;
             },
-            set(value: boolean | string | null) {
-                /**
-                 * Emit on change input value
-                 * @property { String | Boolean | Null } value
-                 */
-                console.log(value)
+            set(value) {
                 emit('update:modelValue', value);
             }
         });
 
         return {
-            localValue,
-            localOptions
+            themeClass,
+            localValue
         };
     }
 });

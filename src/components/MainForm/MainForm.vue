@@ -4,70 +4,49 @@
             <div class="main-form__container-header">
                 <img
                     :src="mainCar"
-                    alt="mainCar"
+                    alt="main-car"
                     class="main-form__car"
-                >
+                />
                 <img
                     :src="logo"
-                    alt="Car Logo"
+                    alt="car-logo"
                     class="main-form__logo"
-                >
+                />
                 <div class="main-form__progress-container">
                     <div
                         class="main-form__progress-bar"
                         :style="{ width: progressBarWidth + '%' }"
-                    >
-                    </div>
+                    />
                 </div>
                 <span class="main-form__title">
-                {{ mainTitle }}
+                {{ title }}
                 </span>
             </div>
             <SegmentControl
-                v-if="step === 1"
-                v-model="carType"
-                :options="typeOfCarItems"
+                v-if="isShowMainStepsBlock"
+                v-model="valueOfStep"
+                :theme="componentThemeByStep"
+                :options="options"
                 @update:modelValue="handleSetValue"
             />
-            <SegmentControl
-                v-if="step === 2"
-                v-model="engineType"
-                :options="engineTypeItems"
-                class="main-form__engine-type"
-                @update:modelValue="handleSetValue"
-            />
-            <SegmentControl
-                v-if="step === 3"
-                v-model="carBudget"
-                :options="carBudgetItems"
-                class="main-form__car-budget"
-                @update:modelValue="handleSetValue"
-            />
-            <SegmentControl
-                v-if="step === 4"
-                v-model="presentType"
-                :options="presentTypeItems"
-                class="main-form__present-type"
-                @update:modelValue="handleSetValue"
-            />
-            <div v-if="step === 5">
+            <div v-if="isShowForm">
                 <SendForm
                     @handleSendForm="handleSetValue"
                 />
             </div>
             <div
-                v-if="step === 6"
+                v-if="isShowConclusion"
                 class="main-form__conclusion"
             >
                 <span class="main-form__conclusion-title">
                     ВАШУ ЗАЯВКУ ПРИЙНЯТО!
                 </span>
                 <span class="main-form__conclusion-subtitle">
-                    НАШ МЕНЕДЖЕР ЗВЯЖЕТЬСЯ З ВАМІ НАЙБЛИЖЧИМ ЧАСОМ
+                    НАШ МЕНЕДЖЕР ЗВ'ЯЖЕТЬСЯ З ВАМИ НАЙБЛИЖЧИМ ЧАСОМ
                 </span>
             </div>
             <button
-                v-if="step > 1"
+                v-if="isShowBackBtn"
                 @click="handlePrevStep"
                 class="main-form__back-btn"
             >
@@ -80,30 +59,22 @@
 <script>
 import {
     ref,
-    reactive,
-    defineComponent, computed
+    computed,
+    defineComponent, watch
 } from 'vue';
 
 import './MainForm.scss';
 
-import logo from '../../assets/touch-car-logo.svg';
 import mainCar from '../../assets/main-car.png';
+import logo from '../../assets/touch-car-logo.svg';
 
-import sedan from '../../assets/cars/sedan.png';
-import minivan from '../../assets/cars/minivan.png';
-import crossover from '../../assets/cars/crossover.png';
-import offRaider from '../../assets/cars/offRaider.png';
-import universal from '../../assets/cars/universal.png';
-import hatchback from '../../assets/cars/hatchback.png';
-
-import gas from '../../assets/engine/gas.png';
-import petrol from '../../assets/engine/petrol.png';
-import diesel from '../../assets/engine/diesel.png';
-import hybrid from '../../assets/engine/hybrid.png';
-import electric from '../../assets/engine/electric.png';
-
-import SegmentControl from "../SegmentControl/SegmentControl.vue";
 import SendForm from "../SendForm/SendForm.vue";
+import SegmentControl from "../SegmentControl/SegmentControl.vue";
+import {
+    THEME_MAP,
+    TITLES_MAP,
+    OPTIONS_MAP
+} from "./form-constants";
 
 export default defineComponent({
     name: 'MainForm',
@@ -112,98 +83,86 @@ export default defineComponent({
         SegmentControl
     },
     setup() {
-        const step = ref(1);
+        const currentStep = ref(1);
 
         const carType = ref();
         const carBudget = ref();
         const presentType = ref();
         const engineType = ref();
 
-        const progressBarWidth = computed(() => (step.value / 6) * 100);
+        const progressBarWidth = computed(() => (currentStep.value / 6) * 100);
+        const isShowMainStepsBlock = computed(() => ![5, 6].includes(currentStep.value));
+        const isShowBackBtn = computed(() => currentStep.value > 1);
+        const isShowForm = computed(() => currentStep.value === 5);
+        const isShowConclusion = computed(() => currentStep.value === 6);
 
-        const mainTitle = computed(() => {
-            const TITLES_MAP = {
-                1: 'ОБЕРІТЬ ТИП КУЗОВА',
-                2: 'ВИД ПАЛИВА',
-                3: 'БЮДЖЕТ НА АВТО',
-                4: 'ОБЕРІТЬ ПОДАРУНОК'
+        const title = computed(() => TITLES_MAP[currentStep.value])
+        const options = computed(() => OPTIONS_MAP[currentStep.value])
+
+        const componentThemeByStep = computed(() => THEME_MAP[currentStep.value])
+
+        const valueOfStep = computed({
+            get() {
+                const TYPE_VALUE_MAP = {
+                    1: carType.value,
+                    2: engineType.value,
+                    3: carBudget.value,
+                    4: presentType.value
+                };
+                return TYPE_VALUE_MAP[currentStep.value];
+            },
+            set(value) {
+                const TYPE_SETTER_MAP = {
+                    1: () => carType.value = value,
+                    2: () => engineType.value = value,
+                    3: () => carBudget.value = value,
+                    4: () => presentType.value = value
+                };
+
+                TYPE_SETTER_MAP[currentStep.value]?.();
             }
-
-            return TITLES_MAP[step.value];
-        })
-
-        const typeOfCarItems = [
-            { value: 'sedan', label: 'СЕДАН', icon: sedan },
-            { value: 'hatchback', label: 'ХЕТЧБЕК', icon: hatchback },
-            { value: 'universal', label: 'УНІВЕРСАЛ', icon: universal },
-            { value: 'crossover', label: 'КРОСОВЕР', icon: crossover },
-            { value: 'minivan', label: 'МІНІВЕН', icon: minivan },
-            { value: 'offRaider', label: 'ПОЗАШЛЯХОВИК', icon: offRaider },
-            { value: 'undecided', label: 'НЕ ВИЗНАЧИВСЯ/НЕ ВАЖЛИВО' }
-        ];
-
-        const engineTypeItems = [
-            { value: 'petrol', label: 'БЕНЗИНОВЫЙ', icon: petrol },
-            { value: 'diesel', label: 'ДИЗЕЛЬНЫЙ', icon: diesel },
-            { value: 'electric', label: 'ЭЛЕКТРИЧЕСКИЙ', icon: electric },
-            { value: 'hybrid', label: 'ГИБРИДНЫЙ', icon: hybrid },
-            { value: 'gas', label: 'ГАЗ', icon: gas },
-            { value: 'undecided', label: 'НЕ ОПРЕДЕЛИЛСЯ' }
-        ];
-
-        const carBudgetItems = [
-            { value: '<10000', label: 'ДО 10000$' },
-            { value: '15000', label: '10000 - 15000$' },
-            { value: '20000', label: '15000 - 20000$' },
-            { value: '25000', label: '20000 - 25000$' },
-            { value: '25000>', label: '25000$' }
-        ];
-
-        const presentTypeItems = [
-            { value: 'interior-cleaning', label: 'ХІМЧІСТКА САЛОНУ' },
-            { value: 'polishing', label: 'КОСМЕТИЧНЕ ПАЛІРУВАННЯ' },
-            { value: 'full-tank', label: 'ПОВНИЙ БАК БЕНЗИНУ' },
-            { value: 'tinting', label: 'ТОНУВАННЯ АВТО' },
-            { value: 'fluids-filters', label: 'ЗАМІНА РІДИН ТА ФІЛЬТРІВ' }
-        ];
+        });
 
         function handleSetValue() {
-            step.value++
+            currentStep.value++
         }
 
         function handlePrevStep() {
-            switch (step.value) {
-                case 5:
-                    presentType.value = null;
-                    break;
-                case 4:
-                    carBudget.value = null;
-                    break;
-                case 3:
-                    engineType.value = null;
-                    break;
-                case 2:
-                    carType.value = null;
-                    break;
-            }
-            step.value--;
+            const stepClearActions = {
+                5: () => presentType.value = undefined,
+                4: () => carBudget.value = undefined,
+                3: () => engineType.value = undefined,
+                2: () => carType.value = undefined
+            };
+
+            stepClearActions[currentStep.value]?.();
+            currentStep.value--;
         }
 
+        watch(currentStep, () => {
+            console.log(carType.value, 'carType');
+            console.log(carBudget.value, 'carBudget');
+            console.log(engineType.value, 'engineType');
+            console.log(presentType.value, 'presentType');
+        })
 
         return {
-            logo,
-            mainCar,
-            progressBarWidth,
-            mainTitle,
-            step,
-            engineType,
-            presentType,
-            carBudget,
-            presentTypeItems,
-            carBudgetItems,
-            typeOfCarItems,
-            engineTypeItems,
             carType,
+            carBudget,
+            presentType,
+            engineType,
+            logo,
+            title,
+            mainCar,
+            options,
+            isShowForm,
+            currentStep,
+            valueOfStep,
+            isShowBackBtn,
+            isShowConclusion,
+            progressBarWidth,
+            isShowMainStepsBlock,
+            componentThemeByStep,
             handlePrevStep,
             handleSetValue
         };

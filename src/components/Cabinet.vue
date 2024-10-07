@@ -1,7 +1,5 @@
 <template>
-    <MainHeader
-        @clickBuyAuto="handleClick"
-    />
+    <MainHeader />
     <MainForm />
 </template>
 
@@ -19,19 +17,6 @@ export default defineComponent({
     components: {
         MainForm,
         MainHeader
-    },
-    setup() {
-
-        function handleClick() {
-            window.scrollTo({
-                top: window.scrollY + 500, // edit it and do better, scroll to block MainForm
-                behavior: 'smooth'
-            });
-        }
-
-        return {
-            handleClick
-        };
     }
 });
 </script>

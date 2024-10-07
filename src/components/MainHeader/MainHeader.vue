@@ -6,9 +6,9 @@
             alt="Car Logo"
             class="main-header__logo"
         >
-        <div class="main-header__address">
+        <span class="main-header__address">
             МИХАЙЛА БОЙЧУКА, 41, KYIV, UKRAINE
-        </div>
+        </span>
         <div class="main-header__title">
             <span>
                 ПРИДБАЙ АВТО  З США
@@ -17,12 +17,12 @@
                 З ВИГОДОЮ В 40%
             </span>
         </div>
-        <div class="main-header__description">
+        <span class="main-header__description">
             ОБЕРИ АВТО ЗА КІЛЬКОМА КРИТЕРІЯМИ ТА ОТРИМАЙ ПРОФЕЙСІЙНУ КОНСУЛЬТАЦІЮ І ПОДАРУНОК
-        </div>
+        </span>
         <button
             class="main-header__button"
-            @click="handleClick"
+            @click="handleClickBuyCar"
         >
             ПІДІБРАТИ АВТО
         </button>
@@ -41,20 +41,17 @@ export default defineComponent({
     components: {
         ContactsNavigation
     },
-    emits: {
-        clickBuyAuto: null
-    },
-    setup(_, { emit }) {
-        function handleClick() {
-            /**
-             * Emitted when the button has been clicked.
-             */
-            emit('clickBuyAuto')
+    setup() {
+        function handleClickBuyCar() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
         }
 
         return {
             logo,
-            handleClick
+            handleClickBuyCar
         };
     }
 });
