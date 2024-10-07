@@ -69,7 +69,7 @@
   @media (max-width: 800px) {
     .segment-control__item {
       &:hover {
-        border: none transparent;
+        border: 1px solid transparent;
       }
     }
   }
