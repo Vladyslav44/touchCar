@@ -43,7 +43,7 @@ export default defineComponent({
     },
     setup() {
         function handleClickBuyCar() {
-            const scrollOffset = window.innerWidth < 580 ? 40 : 0;
+            const scrollOffset = window.innerWidth < 580 ? 140 : 0;
 
             setTimeout(() => {
                 window.scrollTo({
