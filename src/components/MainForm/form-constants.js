@@ -105,11 +105,11 @@ const CAR_BUDGET_ITEMS = [
 const PRESENT_TYPE_ITEMS = [
     {
         value: 'interior-cleaning',
-        label: 'ХІМЧІСТКА САЛОНУ'
+        label: 'ХІМЧИСТКА САЛОНУ'
     },
     {
         value: 'polishing',
-        label: 'КОСМЕТИЧНЕ ПАЛІРУВАННЯ'
+        label: 'КОСМЕТИЧНЕ ПОЛІРУВАННЯ'
     },
     {
         value: 'full-tank',

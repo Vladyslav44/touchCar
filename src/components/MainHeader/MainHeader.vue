@@ -43,12 +43,14 @@ export default defineComponent({
     },
     setup() {
         function handleClickBuyCar() {
-            const scrollOffset = window.innerWidth < 580 ? 60 : 0;
+            const scrollOffset = window.innerWidth < 580 ? 40 : 0;
 
-            window.scrollTo({
-                top: document.body.scrollHeight - window.innerHeight - scrollOffset,
-                behavior: 'smooth'
-            });
+            setTimeout(() => {
+                window.scrollTo({
+                    top: document.body.scrollHeight - window.innerHeight - scrollOffset,
+                    behavior: 'smooth'
+                });
+            }, 100);
         }
 
         return {
