@@ -155,27 +155,31 @@ export default defineComponent({
 
         function sendMessageToTelegram(message) {
             const botToken = '7601493897:AAGeRor1YMuuvSUk1ZV_o_f6s0haJE44o4k';
-            const chatId = ['284774765', '422631602'];
+            const chatIds = ['284774765', '422631602']; // Массив chat_id
 
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'Markdown'
-                }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    handleSetValue();
+            chatIds.forEach(chatId => {
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: 'Markdown',
+                    }),
                 })
-                .catch((error) => {
-                    console.error('Error sending message:', error);
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(`Message sent successfully to ${chatId}`, data);
+                        handleSetValue(); // Вызов функции после отправки
+                    })
+                    .catch((error) => {
+                        console.error(`Error sending message to ${chatId}:`, error);
+                    });
+            });
         }
+
 
         function handlePrevStep() {
             const stepClearActions = {
