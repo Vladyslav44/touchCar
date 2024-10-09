@@ -8,12 +8,11 @@ import hatchback from "../../assets/cars/hatchback.png";
 import universal from "../../assets/cars/universal.png";
 import crossover from "../../assets/cars/crossover.png";
 import offRaider from "../../assets/cars/offRaider.png";
-import electric from "../../assets/engine/electric.png";
 
 const TYPE_OF_CAR_ITEMS = [
     {
         value: 'sedan',
-        label: 'СЕДАН',
+        label: 'СЕДАН'
         // icon: sedan
     },
     {
@@ -42,8 +41,8 @@ const TYPE_OF_CAR_ITEMS = [
         // icon: offRaider
     },
     {
-        value: 'undecided',
-        label: 'НЕ ВАЖЛИВО/НЕ ВИЗНАЧИВСЯ'
+        value: 'car_type_undecided',
+        label: 'НЕ ВАЖЛИВО/НЕ ВИЗНАЧИВCЯ'
     }
 ];
 
@@ -74,7 +73,7 @@ const ENGINE_TYPE_ITEMS = [
         // icon: gas
     },
     {
-        value: 'undecided',
+        value: 'engine_type_undecided',
         label: 'НЕ ВАЖЛИВО/НЕ ВИЗНАЧИВСЯ'
     }
 ];
@@ -150,5 +149,9 @@ const THEME_MAP = {
 export {
     THEME_MAP,
     TITLES_MAP,
-    OPTIONS_MAP
+    OPTIONS_MAP,
+    CAR_BUDGET_ITEMS,
+    ENGINE_TYPE_ITEMS,
+    TYPE_OF_CAR_ITEMS,
+    PRESENT_TYPE_ITEMS
 }

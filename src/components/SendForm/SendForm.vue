@@ -87,7 +87,11 @@ export default defineComponent({
         const isPhoneInvalid = ref(false)
 
         function handleContinue() {
-            emit('handleSendForm')
+            const params = {
+                userName: name.value,
+                userPhone: phone.value
+            }
+            emit('handleSendForm', params)
         }
 
         const maxInputLength = computed(() => name.value.length >= MAX_INPUT_NAME_LENGTH)
@@ -98,6 +102,7 @@ export default defineComponent({
         )
 
         const inputOptions = {
+            type: 'tel',
             placeholder: '00 00 0000'
         }
 

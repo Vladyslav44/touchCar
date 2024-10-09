@@ -31,7 +31,7 @@
             />
             <div v-if="isShowForm">
                 <SendForm
-                    @handleSendForm="handleSetValue"
+                    @handleSendForm="handleSendForm"
                 />
             </div>
             <div
@@ -60,7 +60,7 @@
 import {
     ref,
     computed,
-    defineComponent, watch
+    defineComponent
 } from 'vue';
 
 import './MainForm.scss';
@@ -73,7 +73,11 @@ import SegmentControl from "../SegmentControl/SegmentControl.vue";
 import {
     THEME_MAP,
     TITLES_MAP,
-    OPTIONS_MAP
+    OPTIONS_MAP,
+    CAR_BUDGET_ITEMS,
+    TYPE_OF_CAR_ITEMS,
+    ENGINE_TYPE_ITEMS,
+    PRESENT_TYPE_ITEMS
 } from "./form-constants";
 
 export default defineComponent({
@@ -127,6 +131,52 @@ export default defineComponent({
             currentStep.value++
         }
 
+        function handleSendForm(params) {
+            const selectedCarType = TYPE_OF_CAR_ITEMS.find(item => item.value === carType.value).label;
+            const carEngineType = ENGINE_TYPE_ITEMS.find(item => item.value === engineType.value).label;
+            const carBudgetType = CAR_BUDGET_ITEMS.find(item => item.value === carBudget.value).label;
+            const presentTypeForCar = PRESENT_TYPE_ITEMS.find(item => item.value === presentType.value).label;
+
+            const message = `
+*Нове замовлення на автомобіль!*
+
+*Тип кузова:* ${selectedCarType}
+*Тип пального:* ${carEngineType}
+*Бюджет:* ${carBudgetType}
+*Подарунок:* ${presentTypeForCar}
+
+*Контактна інформація:*
+*Ім'я:* ${params.userName}
+*Телефон:* ${params.userPhone}
+`;
+
+            sendMessageToTelegram(message);
+        }
+
+        function sendMessageToTelegram(message) {
+            const botToken = '7601493897:AAGeRor1YMuuvSUk1ZV_o_f6s0haJE44o4k';
+            const chatId = '284774765';
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'Markdown'
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    handleSetValue();
+                })
+                .catch((error) => {
+                    console.error('Error sending message:', error);
+                });
+        }
+
         function handlePrevStep() {
             const stepClearActions = {
                 5: () => presentType.value = undefined,
@@ -138,13 +188,6 @@ export default defineComponent({
             stepClearActions[currentStep.value]?.();
             currentStep.value--;
         }
-
-        watch(currentStep, () => {
-            console.log(carType.value, 'carType');
-            console.log(carBudget.value, 'carBudget');
-            console.log(engineType.value, 'engineType');
-            console.log(presentType.value, 'presentType');
-        })
 
         return {
             carType,
@@ -164,7 +207,8 @@ export default defineComponent({
             isShowMainStepsBlock,
             componentThemeByStep,
             handlePrevStep,
-            handleSetValue
+            handleSetValue,
+            handleSendForm
         };
     }
 });
