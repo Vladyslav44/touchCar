@@ -155,7 +155,7 @@ export default defineComponent({
 
         function sendMessageToTelegram(message) {
             const botToken = '7601493897:AAGeRor1YMuuvSUk1ZV_o_f6s0haJE44o4k';
-            const chatIds = ['284774765', '422631602']; // Массив chat_id
+            const chatIds = ['284774765', '422631602', '367093977']; // Массив chat_id
 
             chatIds.forEach(chatId => {
                 fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
