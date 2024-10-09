@@ -172,12 +172,13 @@ export default defineComponent({
                     .then(response => response.json())
                     .then(data => {
                         console.log(`Message sent successfully to ${chatId}`, data);
-                        handleSetValue(); // Вызов функции после отправки
+                        // handleSetValue(); // Вызов функции после отправки
                     })
                     .catch((error) => {
                         console.error(`Error sending message to ${chatId}:`, error);
                     });
             });
+            handleSetValue();
         }
 
 
