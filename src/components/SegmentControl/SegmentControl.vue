@@ -15,12 +15,16 @@
                 type="radio"
                 class="segment-control__input"
             >
-            <img
+            <div
                 v-if="item.icon"
-                :src="item.icon"
-                alt="img"
-                class="segment-control__img"
+                class="segment-control__icon-block"
             >
+                <img
+                    :src="item.icon"
+                    alt="img"
+                    class="segment-control__img"
+                />
+            </div>
             <div class="segment-control__label">
                 {{ item.label }}
             </div>

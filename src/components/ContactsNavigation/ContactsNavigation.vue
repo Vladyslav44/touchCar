@@ -30,22 +30,22 @@ export default defineComponent({
         const navigationItems = [
             {
                 iconName: instagramLogo,
-                href: 'https://www.instagram.com',
+                href: 'https://www.instagram.com/_touchcar_/profilecard/?igsh=ejV4NmJqOXFlMzU4',
                 alt: 'instagram-image'
             },
             {
                 iconName: tiktokLogo,
-                href: 'https://www.tiktok.com',
+                href: 'https://www.tiktok.com/@_touchcar_?_t=8qOqA44qEk9&_r=1',
                 alt: 'tiktok-image'
             },
             {
                 iconName: facebookLogo,
-                href: 'https://www.facebook.com',
+                href: 'https://www.facebook.com/touchcarkyiv',
                 alt: 'facebook-image'
             },
             {
                 iconName: telephoneLogo,
-                href: 'tel: + 1234567890',
+                href: 'tel:+380633529474',
                 alt: 'telephone-image'
             }
         ]

@@ -1,44 +1,45 @@
-import gas from "../../assets/engine/gas.png";
-import sedan from "../../assets/cars/sedan.png";
-import minivan from "../../assets/cars/minivan.png";
-import petrol from "../../assets/engine/petrol.png";
-import diesel from "../../assets/engine/diesel.png";
-import hybrid from "../../assets/engine/hybrid.png";
-import hatchback from "../../assets/cars/hatchback.png";
-import universal from "../../assets/cars/universal.png";
-import crossover from "../../assets/cars/crossover.png";
-import offRaider from "../../assets/cars/offRaider.png";
+import minivan from "../../assets/cars/minivan.svg";
+import gas from "../../assets/engine/gas.svg";
+import electric from "../../assets/engine/electric.svg";
+import petrol from "../../assets/engine/petrol.svg";
+import diesel from "../../assets/engine/diesel.svg";
+import hybrid from "../../assets/engine/hybrid.svg";
+import hatchback from "../../assets/cars/hatchback.svg";
+import universal from "../../assets/cars/universal.svg";
+import crossover from "../../assets/cars/crossover.svg";
+import offRaider from "../../assets/cars/offRaider.svg";
+import sedan from "../../assets/cars/sedan.svg";
 
 const TYPE_OF_CAR_ITEMS = [
     {
         value: 'sedan',
-        label: 'СЕДАН'
-        // icon: sedan
+        label: 'СЕДАН',
+        icon: sedan
     },
     {
         value: 'hatchback',
         label: 'ХЕТЧБЕК',
-        // icon: hatchback
+        icon: hatchback
     },
     {
         value: 'universal',
         label: 'УНІВЕРСАЛ',
-        // icon: universal
+        icon: universal
     },
     {
         value: 'crossover',
         label: 'КРОСОВЕР',
-        // icon: crossover
+        icon: crossover
     },
     {
         value: 'minivan',
         label: 'МІНІВЕН',
-        // icon: minivan
+        icon: minivan
     },
     {
         value: 'offRaider',
         label: 'ПОЗАШЛЯХОВИК',
-        // icon: offRaider
+        icon: offRaider
     },
     {
         value: 'car_type_undecided',
@@ -50,27 +51,27 @@ const ENGINE_TYPE_ITEMS = [
     {
         value: 'petrol',
         label: 'БЕНЗИН',
-        // icon: petrol
+        icon: petrol
     },
     {
         value: 'diesel',
         label: 'ДИЗЕЛЬ',
-        // icon: diesel
+        icon: diesel
     },
     {
         value: 'electric',
         label: 'ЕЛЕКТРО',
-        // icon: electric
+        icon: electric
     },
     {
         value: 'hybrid',
         label: 'ГІБРИД',
-        // icon: hybrid
+        icon: hybrid
     },
     {
         value: 'gas',
         label: 'ГАЗ',
-        // icon: gas
+        icon: gas
     },
     {
         value: 'engine_type_undecided',

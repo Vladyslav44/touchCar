@@ -1,12 +1,6 @@
 @import '../../assets/variables';
 
 .segment-control {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
-
   &.segment-control--secondary {
     display: flex;
     gap: 20px;
@@ -15,6 +9,7 @@
     justify-content: center;
 
     .segment-control__item {
+      display: flex;
       flex-direction: unset;
       width: 50%;
       padding: 5px;
@@ -32,16 +27,40 @@
     }
   }
 
-  .segment-control__item {
+  &.segment-control--primary {
     display: flex;
-    //justify-content: space-between;
-    //flex-direction: column;
-    //align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+
+    .segment-control__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 188px;
+      height: 188px;
+      padding: 4px;
+
+      @media (max-width: 800px) {
+        width: 158px;
+        height: 158px;
+      }
+
+      @media (max-width: 400px) {
+        width: 128px;
+        height: 128px;
+      }
+    }
+
+    .segment-control__label {
+      margin-top: 8px;
+    }
+  }
+
+  .segment-control__item {
     border: 1px solid $color-white;
-    //width: 100%;
-    //max-width: 160px;
-    //max-height: 240px;
-    padding: 12px;
     cursor: pointer;
 
     &:hover {
@@ -60,13 +79,35 @@
   }
 
   .segment-control__img {
-    //overflow: hidden;
-    //margin: 50px 0;
-    //width: 160px; //edit
-    //height: 160px; //edit
+    width: 120px;
+    height: 120px;
+  }
+
+  .segment-control__icon-block {
+    height: 100%;
+    background-color: $color-gray-button;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #707070;
+    }
   }
 
   @media (max-width: 800px) {
+    .segment-control__img {
+      width: 110px;
+      height: 110px;
+    }
+
+    .segment-control__icon-block {
+      &:hover {
+        background-color: $color-gray-button;
+      }
+    }
+
     .segment-control__item {
       &:hover {
         border: 1px solid $color-white;
@@ -89,7 +130,19 @@
     }
   }
 
+  @media (max-width: 400px) {
+    .segment-control__img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .segment-control__label {
+      font-size: 14px;
+    }
+  }
+
   .segment-control__input {
+    height: 0;
     width: 0;
     margin: 0;
     opacity: 0;
