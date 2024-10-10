@@ -112,7 +112,14 @@ export default defineComponent({
         }
 
         function onInput() {
-            isPhoneInvalid.value = phone.value.length > NUMBER_COUNT;
+            const isNumericOrSpace = /^[\d\s]*$/.test(phone.value);
+
+            const spaceCount = (phone.value.match(/\s/g) || []).length;
+
+            isPhoneInvalid.value =
+                phone.value.length > NUMBER_COUNT ||
+                !isNumericOrSpace ||
+                spaceCount > 5;
         }
 
         return {

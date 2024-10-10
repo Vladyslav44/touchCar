@@ -1,14 +1,14 @@
-import minivan from "../../assets/cars/minivan.svg";
+import minivan from "../../assets/cars/minivan.png";
 import gas from "../../assets/engine/gas.svg";
 import electric from "../../assets/engine/electric.svg";
 import petrol from "../../assets/engine/petrol.svg";
 import diesel from "../../assets/engine/diesel.svg";
 import hybrid from "../../assets/engine/hybrid.svg";
-import hatchback from "../../assets/cars/hatchback.svg";
-import universal from "../../assets/cars/universal.svg";
-import crossover from "../../assets/cars/crossover.svg";
-import offRaider from "../../assets/cars/offRaider.svg";
-import sedan from "../../assets/cars/sedan.svg";
+import hatchback from "../../assets/cars/hatchback.png";
+import universal from "../../assets/cars/universal.png";
+import crossover from "../../assets/cars/crossover.png";
+import offRaider from "../../assets/cars/offRaider.png";
+import sedan from "../../assets/cars/sedan.png";
 
 const TYPE_OF_CAR_ITEMS = [
     {
@@ -141,7 +141,7 @@ const OPTIONS_MAP = {
 }
 
 const THEME_MAP = {
-    1: 'primary',
+    1: 'thready',
     2: 'primary',
     3: 'secondary',
     4: 'secondary'

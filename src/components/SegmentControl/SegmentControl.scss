@@ -27,7 +27,8 @@
     }
   }
 
-  &.segment-control--primary {
+  &.segment-control--primary,
+  &.segment-control--thready {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -83,6 +84,13 @@
     height: 120px;
   }
 
+  &.segment-control--thready {
+    .segment-control__img {
+      width: 156px;
+      height: 156px;
+    }
+  }
+
   .segment-control__icon-block {
     height: 100%;
     background-color: $color-gray-button;
@@ -97,6 +105,13 @@
   }
 
   @media (max-width: 800px) {
+    &.segment-control--thready {
+      .segment-control__img {
+        width: 127px;
+        height: 127px;
+      }
+    }
+
     .segment-control__img {
       width: 110px;
       height: 110px;
@@ -131,6 +146,14 @@
   }
 
   @media (max-width: 400px) {
+
+    &.segment-control--thready {
+      .segment-control__img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
     .segment-control__img {
       width: 100px;
       height: 100px;
